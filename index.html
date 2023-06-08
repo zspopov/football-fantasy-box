@@ -26,9 +26,9 @@
       .then(data => {
         // Handle the response data
         console.log(data);
-        const item = data['Items'][0];
-        popupTitle.textContent = item['footballClub']['S'];;
-        popupDescription.textContent = item['description']['S'];
+        const item = data;
+        popupTitle.textContent = item.footballClub;
+        popupDescription.textContent = item.description;
       })
       .catch(error => {
         // Handle any errors
