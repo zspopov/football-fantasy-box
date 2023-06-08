@@ -154,7 +154,7 @@ nav {
   transform: translateY(1px);
 }
 
-/* .popup-dialog {
+.popup-dialog {
   display: none;
   position: fixed;
   top: 50%;
@@ -178,7 +178,7 @@ nav {
 
 #close-popup {
   margin-top: 10px;
-} */
+}
 
 
 /* Content styles */
