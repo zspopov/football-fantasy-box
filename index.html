@@ -30,7 +30,7 @@
         const item = data;
         popupTitle.textContent = item.footballClub;
         popupDescription.textContent = item.description;
-        popupImage.textContent = item.imageURL;
+        popupImage.src = item.imageURL;
       })
       .catch(error => {
         // Handle any errors
