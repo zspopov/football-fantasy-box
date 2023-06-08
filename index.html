@@ -26,6 +26,7 @@
       .then(data => {
         // Handle the response data
         console.log(data);
+        const item = data['Items'][0];
         popupTitle.textContent = item['footballClub']['S'];;
         popupDescription.textContent = item['description']['S'];
       })
