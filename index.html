@@ -23,21 +23,21 @@
       .then(data => {
         // Handle the response data
         console.log(data);
+
+        // Fetch data and update the popup content with the response
+        // Assuming you have the response stored in a variable called 'response'
+        const item = data['Items'][0];
+        popupTitle.textContent = item['footballClub']['S'];
+        popupDescription.textContent = item['description']['S'];
+        popupImage.src = item['imageURL']['S'];
+
+        // Display the popup dialog
+        popupDialog.style.display = 'block';
       })
       .catch(error => {
         // Handle any errors
         console.error('Error:', error);
       });
-
-      // Fetch data and update the popup content with the response
-      // Assuming you have the response stored in a variable called 'response'
-      const item = data['Items'][0];
-      popupTitle.textContent = item['footballClub']['S'];
-      popupDescription.textContent = item['description']['S'];
-      popupImage.src = item['imageURL']['S'];
-
-      // Display the popup dialog
-      popupDialog.style.display = 'block';
 
     }
 
@@ -49,6 +49,7 @@
       // Hide the popup dialog
       popupDialog.style.display = 'none';
     }
+    
   </script>
 </head>
 <body>
