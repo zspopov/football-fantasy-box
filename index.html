@@ -34,14 +34,17 @@
         // Handle any errors
         console.error('Error:', error);
       });
-
-
-
-      // // Display the popup dialog
-      // popupDialog.style.display = 'block';
-
       
       popupDialog.style.display = 'block';
+
+      // Add event listener to the close button to close the popup dialog
+      closePopupBtn.addEventListener('click', closePopupDialog);
+
+      // Function to close the popup dialog
+      function closePopupDialog() {
+        // Hide the popup dialog
+        popupDialog.style.display = 'none';
+      }
     }
 
   </script>
