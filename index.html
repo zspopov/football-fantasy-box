@@ -7,6 +7,14 @@
   <html lang="bg"></html>
   <meta charset="UTF-8">
   <script>
+    // Get references to the popup dialog and its content elements
+    const popupDialog = document.getElementById('popup-dialog');
+    const popupTitle = document.getElementById('popup-title');
+    const popupDescription = document.getElementById('popup-description');
+    const popupImage = document.getElementById('popup-image');
+    const closePopupBtn = document.getElementById('close-popup');
+
+
     function getRandomJersey() {
       fetch('https://zgucvbpdjc.execute-api.us-east-1.amazonaws.com/Develop', {
         method: 'GET'
@@ -20,6 +28,26 @@
         // Handle any errors
         console.error('Error:', error);
       });
+
+      // Fetch data and update the popup content with the response
+      // Assuming you have the response stored in a variable called 'response'
+      const item = data['Items'][0];
+      popupTitle.textContent = item['footballClub']['S'];
+      popupDescription.textContent = item['description']['S'];
+      popupImage.src = item['imageURL']['S'];
+
+      // Display the popup dialog
+      popupDialog.style.display = 'block';
+
+    }
+
+    // Add event listener to the close button to close the popup dialog
+    closePopupBtn.addEventListener('click', closePopupDialog);
+
+    // Function to close the popup dialog
+    function closePopupDialog() {
+      // Hide the popup dialog
+      popupDialog.style.display = 'none';
     }
   </script>
 </head>
@@ -47,12 +75,23 @@
         <!-- Text content goes here -->
         <h2>FOOTBALL FANTASY BOX</h2>
         <p>Ето я твоята мистериозна кутия с новата ти оригинална футболна тениска.</p>
-        <button class="button" onclick="getRandomJersey()">Отвори</button>
+        <button class="button" id="button"  onclick="getRandomJersey()">Отвори</button>
       </div>
       <div class="right-content">
         <!-- Image goes here -->
         <img src="images/welcome.jpg" alt="Welcome Image">
       </div>
+    </div>
+  </div>
+  
+  <!-- Popup dialog container -->
+  <div id="popup-dialog" class="popup-dialog">
+    <div class="popup-content">
+      <!-- Content to display in the popup -->
+      <h3 id="popup-title"></h3>
+      <p id="popup-description"></p>
+      <img id="popup-image" src="" alt="Popup Image">
+      <button id="close-popup">Close</button>
     </div>
   </div>
 
