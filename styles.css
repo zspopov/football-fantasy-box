@@ -154,6 +154,55 @@ nav {
   transform: translateY(1px);
 }
 
+.popup-dialog {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #a08e68;
+  background-color: #000;
+  box-shadow: 0 0 70px rgba(0, 0, 0, .5); 
+  box-shadow: 0 0 70px rgba(0, 0, 0, .5); 
+  padding: 20px;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.popup-text {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.popup-image-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#popup-image {
+  max-width: 100%;
+  max-height: 400px;
+  margin-bottom: 10px;
+}
+
+#close-popup {
+  margin-top: 10px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #888;
+  cursor: pointer;
+}
+
 /* Content styles */
 main {
   margin: 20px;

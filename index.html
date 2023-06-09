@@ -1,9 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Football fantasy box</title>
+  <meta charset="UTF-8">
+  <title>Football Fantasy Box</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <html lang="bg"></html>
+  <script>
+    function getRandomJersey() {
+      const popupDialog = document.getElementById('popup-dialog');
+      const popupTitle = document.getElementById('popup-title');
+      const popupDescription = document.getElementById('popup-description');
+      const popupImage = document.getElementById('popup-image');
+      const popupSeason = document.getElementById('popup-season');
+      const popupSupplier = document.getElementById('popup-supplier');
+      const popupSize = document.getElementById('popup-size');
+      const closeBtn = document.querySelector('.close-btn');
+
+      fetch('https://zgucvbpdjc.execute-api.us-east-1.amazonaws.com/Develop', {
+        method: 'GET'
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        popupTitle.textContent = data.footballClub;
+        popupDescription.textContent = data.description;
+        popupImage.src = data.imageURL;
+        popupSeason.textContent = "Сезон: ".concat(data.footballSeason);
+        popupSupplier.textContent = "Бранд: ".concat(data.footballKitSupplier);
+        popupSize.textContent = "Размер: ".concat(data.size);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+      
+      popupDialog.style.display = 'block';
+
+      closeBtn.addEventListener('click', closePopupDialog);
+
+      function closePopupDialog() {
+        popupDialog.style.display = 'none';
+      }
+    }
+
+  </script>
 </head>
 <body>
   <header>
@@ -14,12 +54,6 @@
       <div class="nav-text">
         <span>FOOTBALL FANTASY BOX</span>
       </div>
-      <ul class="navigation">
-        <li><a href="#">Начало</a></li>
-        <li><a href="#">За нас</a></li>
-        <li><a href="#">Тениски</a></li>
-        <li><a href="#">Контакти</a></li>
-      </ul>
     </nav>
   </header>
 
@@ -28,9 +62,8 @@
       <div class="left-content">
         <!-- Text content goes here -->
         <h2>FOOTBALL FANTASY BOX</h2>
-        <p>Мистериозна кутия с твоята нова оригинална футболна тениска.</p>
-        <a href="#" class="button">Поръчай</a>
-
+        <p>Ето я твоята мистериозна кутия с новата ти оригинална футболна тениска.</p>
+        <button class="button" onclick="getRandomJersey()">Отвори</button>
       </div>
       <div class="right-content">
         <!-- Image goes here -->
@@ -38,6 +71,26 @@
       </div>
     </div>
   </div>
+
+  <!-- Popup dialog container -->
+  <div id="popup-dialog" class="popup-dialog">
+    <div class="popup-content">
+      <div class="popup-text">
+        <!-- Content to display in the popup text -->
+        <h3 id="popup-title"></h3>
+        <p id="popup-description"></p>
+        <p id="popup-season"></p>
+        <p id="popup-supplier"></p>
+        <p id="popup-size"></p>
+      </div>
+      <div class="popup-image-container">
+        <!-- Image to display in the popup -->
+        <img id="popup-image" src="" alt="Popup Image">
+      </div>
+      <div class="close-btn">&times;</div>
+    </div>
+  </div>
+
 
   <main>
     <!-- Your page content goes here -->
